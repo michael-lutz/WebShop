@@ -58,11 +58,12 @@ def index(session_id):
         all_products, product_item_dict, product_prices, attribute_to_asins = \
             load_products(
                 filepath=DEFAULT_FILE_PATH,
-                num_products=DEBUG_PROD_SIZE
+                num_products=DEBUG_PROD_SIZE,
+                human_goals=False
             )
         search_engine = init_search_engine(num_products=DEBUG_PROD_SIZE)
-        goals = get_goals(all_products, product_prices)
-        random.seed(233)
+        goals = get_goals(all_products, product_prices, False)
+        random.seed(1908)
         random.shuffle(goals)
         weights = [goal['weight'] for goal in goals]
 
